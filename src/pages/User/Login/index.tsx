@@ -1,15 +1,15 @@
-import {Footer} from '@/components';
-import {getCurrentUser, userLogin} from '@/services/myapi/userController';
-import {LockOutlined, UserOutlined} from '@ant-design/icons';
-import {LoginForm, ProFormText} from '@ant-design/pro-components';
-import {FormattedMessage, Helmet, Link, SelectLang, history, useIntl, useModel} from '@umijs/max';
-import {Tabs, message} from 'antd';
-import {createStyles} from 'antd-style';
-import React, {useState} from 'react';
-import {flushSync} from 'react-dom';
+import { Footer } from '@/components';
+import { getCurrentUser, userLogin } from '@/services/myapi/userController';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LoginForm, ProFormText } from '@ant-design/pro-components';
+import { FormattedMessage, Helmet, Link, SelectLang, history, useIntl, useModel } from '@umijs/max';
+import { Tabs, message } from 'antd';
+import { createStyles } from 'antd-style';
+import React, { useState } from 'react';
+import { flushSync } from 'react-dom';
 import Settings from '../../../../config/defaultSettings';
 
-const useStyles = createStyles(({token}) => {
+const useStyles = createStyles(({ token }) => {
   return {
     action: {
       marginLeft: '8px',
@@ -45,19 +45,18 @@ const useStyles = createStyles(({token}) => {
   };
 });
 const Lang = () => {
-  const {styles} = useStyles();
+  const { styles } = useStyles();
 
   return (
     <div className={styles.lang} data-lang>
-      {SelectLang && <SelectLang/>}
+      {SelectLang && <SelectLang />}
     </div>
   );
 };
 const Login: React.FC = () => {
-  const [userLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
-  const {initialState, setInitialState} = useModel('@@initialState');
-  const {styles} = useStyles();
+  const { initialState, setInitialState } = useModel('@@initialState');
+  const { styles } = useStyles();
   const intl = useIntl();
 
   /**
@@ -101,7 +100,6 @@ const Login: React.FC = () => {
       message.error(defaultLoginFailureMessage);
     }
   };
-  const {status, type: loginType} = userLoginState;
 
   return (
     <div className={styles.container}>
@@ -114,7 +112,7 @@ const Login: React.FC = () => {
           - {Settings.title}
         </title>
       </Helmet>
-      <Lang/>
+      <Lang />
       <div
         style={{
           flex: '1',
@@ -126,9 +124,9 @@ const Login: React.FC = () => {
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" src="/logo.svg"/>}
+          logo={<img alt="logo" src="/logo.svg" />}
           title="Ant Design"
-          subTitle={intl.formatMessage({id: 'pages.layouts.userLayout.title'})}
+          subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
           initialValues={{
             autoLogin: true,
           }}
@@ -157,7 +155,7 @@ const Login: React.FC = () => {
                 name="userAccount"
                 fieldProps={{
                   size: 'large',
-                  prefix: <UserOutlined/>,
+                  prefix: <UserOutlined />,
                 }}
                 placeholder={intl.formatMessage({
                   id: '请输入账号',
@@ -166,7 +164,7 @@ const Login: React.FC = () => {
                 rules={[
                   {
                     required: true,
-                    message: <FormattedMessage id="请输入账号" defaultMessage="请输入账号!"/>,
+                    message: <FormattedMessage id="请输入账号" defaultMessage="请输入账号!" />,
                   },
                 ]}
               />
@@ -174,7 +172,7 @@ const Login: React.FC = () => {
                 name="userPassword"
                 fieldProps={{
                   size: 'large',
-                  prefix: <LockOutlined/>,
+                  prefix: <LockOutlined />,
                 }}
                 placeholder={intl.formatMessage({
                   id: '请输入密码',
@@ -183,7 +181,7 @@ const Login: React.FC = () => {
                 rules={[
                   {
                     required: true,
-                    message: <FormattedMessage id="请输入密码" defaultMessage="请输入密码！"/>,
+                    message: <FormattedMessage id="请输入密码" defaultMessage="请输入密码！" />,
                   },
                 ]}
               />
@@ -198,7 +196,7 @@ const Login: React.FC = () => {
           </div>
         </LoginForm>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
