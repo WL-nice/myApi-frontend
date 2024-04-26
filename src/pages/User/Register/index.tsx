@@ -115,8 +115,8 @@ const Login: React.FC = () => {
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" src="/logo.svg"/>}
-          title="Ant Design"
-          subTitle={intl.formatMessage({id: 'pages.layouts.userLayout.title'})}
+          title="MyApi 开放API平台"
+          subTitle={ '开放API平台' }
           initialValues={{
             autoLogin: true,
           }}
