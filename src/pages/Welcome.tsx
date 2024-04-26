@@ -1,6 +1,6 @@
-import { PageContainer } from '@ant-design/pro-components';
-import React, { useEffect, useState } from 'react';
-import { List, message } from 'antd';
+import {PageContainer} from '@ant-design/pro-components';
+import React, {useEffect, useState} from 'react';
+import {List, message} from 'antd';
 import {listInterfaceInfoByPage} from '@/services/myapi/interfaceInfoController';
 
 /**

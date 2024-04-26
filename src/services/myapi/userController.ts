@@ -1,6 +1,6 @@
 // @ts-ignore
 /* eslint-disable */
-import { request } from '@umijs/max';
+import {request} from '@umijs/max';
 
 /** 此处后端没有提供注释 POST /user/add */
 export async function addUser(body: API.UserAddRequest, options?: { [key: string]: any }) {
@@ -80,6 +80,21 @@ export async function userLogin(body: API.UserLoginRequest, options?: { [key: st
 export async function userLogout(options?: { [key: string]: any }) {
   return request<API.BaseResponseInteger>('/user/logout', {
     method: 'POST',
+    ...(options || {}),
+  });
+}
+
+/** 此处后端没有提供注释 POST /user/rebuild_key */
+export async function rebuildUserKey(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.rebuildUserKeyParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseUserAkSk>('/user/rebuild_key', {
+    method: 'POST',
+    params: {
+      ...params,
+    },
     ...(options || {}),
   });
 }

@@ -211,21 +211,21 @@ const InterfaceInfoAdminPage: React.FC = () => {
               修改
             </Typography.Link>
             {record.status === 0 ? <Typography.Link
-            key="config"
-            onClick={() => {
-              handleOnline(record);
-            }}
-          >
-            发布
-          </Typography.Link> : null}
+              key="config"
+              onClick={() => {
+                handleOnline(record);
+              }}
+            >
+              发布
+            </Typography.Link> : null}
             {record.status === 1 ? <Typography.Link
-            key="config"
-            onClick={() => {
-              handleOffline(record);
-            }}
-          >
-            下线
-          </Typography.Link> : null}
+              key="config"
+              onClick={() => {
+                handleOffline(record);
+              }}
+            >
+              下线
+            </Typography.Link> : null}
             <Typography.Link type="danger" onClick={() => handleDelete(record)}>
               删除
             </Typography.Link>

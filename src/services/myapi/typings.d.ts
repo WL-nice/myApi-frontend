@@ -20,6 +20,13 @@ declare namespace API {
     description?: string;
   };
 
+  type BaseResponseListInterfaceInfoVO = {
+    code?: number;
+    data?: InterfaceInfoVO[];
+    message?: string;
+    description?: string;
+  };
+
   type BaseResponseLong = {
     code?: number;
     data?: number;
@@ -148,6 +155,23 @@ declare namespace API {
     method?: string;
   };
 
+  type InterfaceInfoVO = {
+    id?: number;
+    name?: string;
+    description?: string;
+    url?: string;
+    requestParams?: string;
+    requestHeader?: string;
+    responseHeader?: string;
+    status?: number;
+    method?: string;
+    userId?: number;
+    createTime?: string;
+    updateTime?: string;
+    isDelete?: number;
+    totalNum?: number;
+  };
+
   type OrderItem = {
     column?: string;
     asc?: boolean;
@@ -200,6 +224,10 @@ declare namespace API {
     maxLimit?: number;
     countId?: string;
     pages?: number;
+  };
+
+  type rebuildUserKeyParams = {
+    id: number;
   };
 
   type searchUsersParams = {

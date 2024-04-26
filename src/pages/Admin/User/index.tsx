@@ -1,12 +1,12 @@
 import CreateModal from '@/pages/Admin/User/components/CreateModel';
 import UpdateModal from '@/pages/Admin/User/components/UpdateModel';
-import { deleteUser, listUserByPage } from '@/services/myapi/userController';
-import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { PageContainer, ProTable } from '@ant-design/pro-components';
+import {deleteUser, listUserByPage} from '@/services/myapi/userController';
+import {PlusOutlined} from '@ant-design/icons';
+import type {ActionType, ProColumns} from '@ant-design/pro-components';
+import {PageContainer, ProTable} from '@ant-design/pro-components';
 import '@umijs/max';
-import { Button, Space, Typography, message } from 'antd';
-import React, { useRef, useState } from 'react';
+import {Button, Space, Typography, message} from 'antd';
+import React, {useRef, useState} from 'react';
 
 /**
  * 用户管理页面
@@ -150,14 +150,14 @@ const UserAdminPage: React.FC = () => {
               setCreateModalVisible(true);
             }}
           >
-            <PlusOutlined /> 新建
+            <PlusOutlined/> 新建
           </Button>,
         ]}
         request={async (params, sort, filter) => {
           const sortField = Object.keys(sort)?.[0];
           const sortOrder = sort?.[sortField] ?? undefined;
 
-          const { data, code } = await listUserByPage({
+          const {data, code} = await listUserByPage({
             ...params,
             sortField,
             sortOrder,

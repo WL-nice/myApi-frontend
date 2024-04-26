@@ -59,7 +59,7 @@ export const errorConfig: RequestConfig = {
       const {data} = response as unknown as ResponseStructure;
 
       if (data?.code !== 0) {
-        throw new Error('请求失败！' + data.message + " "+ data.description);
+        throw new Error('请求失败！' + data.message + " " + data.description);
       }
       return response;
     },

@@ -1,14 +1,14 @@
-import { Footer } from '@/components';
-import { userRegister } from '@/services/myapi/userController';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { LoginForm, ProFormText } from '@ant-design/pro-components';
-import { FormattedMessage, Helmet, SelectLang, history, useIntl } from '@umijs/max';
-import { Tabs, message } from 'antd';
-import { createStyles } from 'antd-style';
-import React, { useState } from 'react';
+import {Footer} from '@/components';
+import {userRegister} from '@/services/myapi/userController';
+import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import {LoginForm, ProFormText} from '@ant-design/pro-components';
+import {FormattedMessage, Helmet, SelectLang, history, useIntl} from '@umijs/max';
+import {Tabs, message} from 'antd';
+import {createStyles} from 'antd-style';
+import React, {useState} from 'react';
 import Settings from '../../../../config/defaultSettings';
 
-const useStyles = createStyles(({ token }) => {
+const useStyles = createStyles(({token}) => {
   return {
     action: {
       marginLeft: '8px',
@@ -44,21 +44,21 @@ const useStyles = createStyles(({ token }) => {
   };
 });
 const Lang = () => {
-  const { styles } = useStyles();
+  const {styles} = useStyles();
 
   return (
     <div className={styles.lang} data-lang>
-      {SelectLang && <SelectLang />}
+      {SelectLang && <SelectLang/>}
     </div>
   );
 };
 const Login: React.FC = () => {
   const [type, setType] = useState<string>('account');
-  const { styles } = useStyles();
+  const {styles} = useStyles();
   const intl = useIntl();
 
   const handleSubmit = async (values: API.UserRegisterRequest) => {
-    if(values.userPassword !== values.checkPassword){
+    if (values.userPassword !== values.checkPassword) {
       message.error('两次输入的密码不一致');
       return;
     }
@@ -97,7 +97,7 @@ const Login: React.FC = () => {
           - {Settings.title}
         </title>
       </Helmet>
-      <Lang />
+      <Lang/>
       <div
         style={{
           flex: '1',
@@ -114,9 +114,9 @@ const Login: React.FC = () => {
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" src="/logo.svg" />}
+          logo={<img alt="logo" src="/logo.svg"/>}
           title="Ant Design"
-          subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
+          subTitle={intl.formatMessage({id: 'pages.layouts.userLayout.title'})}
           initialValues={{
             autoLogin: true,
           }}
@@ -145,7 +145,7 @@ const Login: React.FC = () => {
                 name="userAccount"
                 fieldProps={{
                   size: 'large',
-                  prefix: <UserOutlined />,
+                  prefix: <UserOutlined/>,
                 }}
                 placeholder={intl.formatMessage({
                   id: '请输入账号',
@@ -154,7 +154,7 @@ const Login: React.FC = () => {
                 rules={[
                   {
                     required: true,
-                    message: <FormattedMessage id="请输入账号" defaultMessage="请输入账号!" />,
+                    message: <FormattedMessage id="请输入账号" defaultMessage="请输入账号!"/>,
                   },
                 ]}
               />
@@ -162,7 +162,7 @@ const Login: React.FC = () => {
                 name="userPassword"
                 fieldProps={{
                   size: 'large',
-                  prefix: <LockOutlined />,
+                  prefix: <LockOutlined/>,
                 }}
                 placeholder={intl.formatMessage({
                   id: '请输入密码',
@@ -171,7 +171,7 @@ const Login: React.FC = () => {
                 rules={[
                   {
                     required: true,
-                    message: <FormattedMessage id="请输入密码" defaultMessage="请输入密码！" />,
+                    message: <FormattedMessage id="请输入密码" defaultMessage="请输入密码！"/>,
                   },
                 ]}
               />
@@ -179,7 +179,7 @@ const Login: React.FC = () => {
                 name="checkPassword"
                 fieldProps={{
                   size: 'large',
-                  prefix: <LockOutlined />,
+                  prefix: <LockOutlined/>,
                 }}
                 placeholder={intl.formatMessage({
                   id: '请确认密码',
@@ -188,7 +188,7 @@ const Login: React.FC = () => {
                 rules={[
                   {
                     required: true,
-                    message: <FormattedMessage id="请确认密码" defaultMessage="请确认密码！" />,
+                    message: <FormattedMessage id="请确认密码" defaultMessage="请确认密码！"/>,
                   },
                 ]}
               />
@@ -196,7 +196,7 @@ const Login: React.FC = () => {
           )}
         </LoginForm>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 };
