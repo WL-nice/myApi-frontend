@@ -323,13 +323,26 @@ declare namespace API {
     checkPassword?: string;
   };
 
+  type UserUpdateByUserRequest = {
+    id?: number;
+    username?: string;
+    userAccount?: string;
+    userAvatar?: string;
+    gender?: number;
+    phone?: string;
+    email?: string;
+    userPassword?: string;
+  };
+
   type UserUpdateRequest = {
     id?: number;
     username?: string;
     userAccount?: string;
     userAvatar?: string;
     gender?: number;
-    userRole?: string;
+    userRole?: number;
+    phone?: string;
+    email?: string;
     userPassword?: string;
   };
 }

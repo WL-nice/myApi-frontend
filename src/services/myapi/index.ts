@@ -6,7 +6,6 @@ import * as analysisController from './analysisController';
 import * as interfaceInfoController from './interfaceInfoController';
 import * as userController from './userController';
 import * as userInterfaceInfoController from './userInterfaceInfoController';
-
 export default {
   userController,
   userInterfaceInfoController,

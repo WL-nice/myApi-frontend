@@ -33,7 +33,13 @@ export default [
     icon: 'smile',
     component: './Welcome',
   },
-  {path: '/interface_info/:id', name: '查看接口', icon: 'smile', component: './InterfaceInfo', hideInMenu: true},
+  {
+    path: '/interface_info/:id',
+    name: '查看接口',
+    icon: 'smile',
+    component: './InterfaceInfo',
+    hideInMenu: true,
+  },
   {
     path: '/user/AkSk',
     name: '开发者密钥',
@@ -55,11 +61,24 @@ export default [
     component: './Admin/InterfaceInfo',
   },
   {
+    path: '/admin/userInterfaceInfo',
+    name: '接口调用管理',
+    icon: 'table',
+    access: 'canAdmin',
+    component: './Admin/UserInterfaceInfo',
+  },
+  {
     path: '/admin/interfaceInfo/analyze',
     name: '调用统计',
     icon: 'table',
     access: 'canAdmin',
     component: './Admin/InterfaceInfoAnalysis',
+  },
+  {
+    path: '/user/message',
+    name: '个人中心',
+    icon: 'crown',
+    component: './User/Message',
   },
   {
     path: '/',

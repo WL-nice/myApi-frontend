@@ -180,14 +180,14 @@ const InterfaceInfoAdminPage: React.FC = () => {
         valueType: 'text',
         hideInForm: true,
       },
-      // {
-      //   title: '创建时间',
-      //   sorter: true,
-      //   dataIndex: 'createTime',
-      //   valueType: 'dateTime',
-      //   hideInSearch: true,
-      //   hideInForm: true,
-      // },
+      {
+        title: '创建时间',
+        sorter: true,
+        dataIndex: 'createTime',
+        valueType: 'dateTime',
+        hideInSearch: true,
+        hideInForm: true,
+      },
       // {
       //   title: '更新时间',
       //   sorter: true,
