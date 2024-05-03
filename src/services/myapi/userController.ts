@@ -52,6 +52,14 @@ export async function getUserKey(
   });
 }
 
+/** 此处后端没有提供注释 POST /user/getValidCode */
+export async function getValidCode(options?: { [key: string]: any }) {
+  return request<API.BaseResponseValidCodeVo>('/user/getValidCode', {
+    method: 'POST',
+    ...(options || {}),
+  });
+}
+
 /** 此处后端没有提供注释 POST /user/list/page */
 export async function listUserByPage(body: API.UserQueryRequest, options?: { [key: string]: any }) {
   return request<API.BaseResponsePageUser>('/user/list/page', {
@@ -114,26 +122,6 @@ export async function userRegister(
   });
 }
 
-/** 此处后端没有提供注释 POST /user/search/page */
-export async function searchUsers(
-  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.searchUsersParams,
-  body: API.PageRequest,
-  options?: { [key: string]: any },
-) {
-  return request<API.BaseResponsePageUser>('/user/search/page', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    params: {
-      ...params,
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
 /** 此处后端没有提供注释 POST /user/update */
 export async function updateUser(body: API.UserUpdateRequest, options?: { [key: string]: any }) {
   return request<API.BaseResponseBoolean>('/user/update', {
@@ -152,6 +140,21 @@ export async function updateUserBySelf(
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseBoolean>('/user/update/by_user', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 此处后端没有提供注释 POST /user/updatePwd */
+export async function updatePwd(
+  body: API.UserUpdatePasswordRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseBoolean>('/user/updatePwd', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

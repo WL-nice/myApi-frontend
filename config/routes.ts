@@ -43,7 +43,7 @@ export default [
   {
     path: '/user/AkSk',
     name: '开发者密钥',
-    icon: 'crown',
+    icon: 'KeyOutlined',
     component: './User/GetAKSK',
   },
   {
@@ -70,7 +70,7 @@ export default [
   {
     path: '/admin/interfaceInfo/analyze',
     name: '调用统计',
-    icon: 'table',
+    icon: 'PieChartOutlined',
     access: 'canAdmin',
     component: './Admin/InterfaceInfoAnalysis',
   },
@@ -79,6 +79,13 @@ export default [
     name: '个人中心',
     icon: 'crown',
     component: './User/Message',
+  },
+  {
+    path: '/user/updatePassword',
+    name: '修改密码',
+    icon: 'crown',
+    component: './User/UpdatePassword',
+    hideInMenu: true,
   },
   {
     path: '/',

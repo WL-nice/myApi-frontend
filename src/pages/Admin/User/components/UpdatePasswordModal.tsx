@@ -2,13 +2,13 @@ import {ProColumns, ProTable} from '@ant-design/pro-components';
 import '@umijs/max';
 import {message, Modal} from 'antd';
 import React from 'react';
-import {updateUser} from '@/services/myapi/userController';
+import {updatePwd, updateUser} from '@/services/myapi/userController';
 
 interface Props {
   oldData?: API.User;
   visible: boolean;
   columns: ProColumns<API.User>[];
-  onSubmit: (values: API.UserUpdateRequest) => void;
+  onSubmit: (values: API.UserUpdatePasswordRequest) => void;
   onCancel: () => void;
 }
 
@@ -17,10 +17,10 @@ interface Props {
  *
  * @param fields
  */
-const handleUpdate = async (fields: API.UserUpdateRequest) => {
+const handleUpdate = async (fields: API.UserUpdatePasswordRequest) => {
   const hide = message.loading('正在更新');
   try {
-    await updateUser(fields);
+    await updatePwd(fields);
     hide();
     message.success('更新成功');
     return true;
@@ -36,7 +36,7 @@ const handleUpdate = async (fields: API.UserUpdateRequest) => {
  * @param props
  * @constructor
  */
-const UpdateModal: React.FC<Props> = (props) => {
+const UpdatePasswordModal: React.FC<Props> = (props) => {
   const {oldData, visible, columns, onSubmit, onCancel} = props;
 
   if (!oldData) {
@@ -46,7 +46,7 @@ const UpdateModal: React.FC<Props> = (props) => {
   return (
     <Modal
       destroyOnClose
-      title={'更新'}
+      title={'修改密码'}
       open={visible}
       footer={null}
       onCancel={() => {
@@ -55,9 +55,20 @@ const UpdateModal: React.FC<Props> = (props) => {
     >
       <ProTable
         type="form"
-        columns={columns}
+        columns={[
+          {
+            title: '密码',
+            dataIndex: 'password',
+            valueType: 'password',
+          },
+          {
+            title: '确认密码',
+            dataIndex: 'checkPassword',
+            valueType: 'password',
+          }]
+        }
         form={{
-          initialValues: oldData,
+          initialValues: undefined,
         }}
         onSubmit={async (values: API.UserUpdateRequest) => {
           const success = await handleUpdate({
@@ -72,4 +83,4 @@ const UpdateModal: React.FC<Props> = (props) => {
     </Modal>
   );
 };
-export default UpdateModal;
+export default UpdatePasswordModal;

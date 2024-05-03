@@ -1,14 +1,15 @@
-import {Footer} from '@/components';
-import {userRegister} from '@/services/myapi/userController';
-import {LockOutlined, UserOutlined} from '@ant-design/icons';
-import {LoginForm, ProFormText} from '@ant-design/pro-components';
-import {FormattedMessage, Helmet, SelectLang, history, useIntl} from '@umijs/max';
-import {Tabs, message} from 'antd';
-import {createStyles} from 'antd-style';
-import React, {useState} from 'react';
+import { Footer } from '@/components';
+import { getValidCode, userRegister } from '@/services/myapi/userController';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LoginForm, ProFormText } from '@ant-design/pro-components';
+import { FormattedMessage, Helmet, history, useIntl } from '@umijs/max';
+import { message, Tabs } from 'antd';
+import { createStyles } from 'antd-style';
+import React, { useEffect, useState } from 'react';
+
 import Settings from '../../../../config/defaultSettings';
 
-const useStyles = createStyles(({token}) => {
+const useStyles = createStyles(({ token }) => {
   return {
     action: {
       marginLeft: '8px',
@@ -43,20 +44,13 @@ const useStyles = createStyles(({token}) => {
     },
   };
 });
-const Lang = () => {
-  const {styles} = useStyles();
 
-  return (
-    <div className={styles.lang} data-lang>
-      {SelectLang && <SelectLang/>}
-    </div>
-  );
-};
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const [type, setType] = useState<string>('account');
   const {styles} = useStyles();
   const intl = useIntl();
-
+  const [captchaSrc, setCaptchaSrc] = useState<string>('');
+  const [captchaKey, setCaptchaKey] = useState<string>('');
   const handleSubmit = async (values: API.UserRegisterRequest) => {
     if (values.userPassword !== values.checkPassword) {
       message.error('两次输入的密码不一致');
@@ -64,7 +58,9 @@ const Login: React.FC = () => {
     }
     try {
       // 登录
-      const res = await userRegister(values);
+      const res = await userRegister({
+        ...values,
+        captchaKey: captchaKey,});
       if (res.code === 0) {
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'register.success',
@@ -86,6 +82,26 @@ const Login: React.FC = () => {
     }
   };
 
+  const refreshCaptcha = async () => {
+    try{
+      const res = await getValidCode();
+      if (res.code === 0) {
+        if(res.data?.codeValue && res.data?.codeKey){
+          setCaptchaSrc(res.data.codeValue);
+          setCaptchaKey(res.data.codeKey);
+        }
+      } else {
+        message.error('刷新验证码失败，请重试');
+      }
+    }catch(error){
+      message.error('刷新验证码失败，请重试');
+    }
+  };
+
+  useEffect(()=>{
+    refreshCaptcha();
+  },[])
+
   return (
     <div className={styles.container}>
       <Helmet>
@@ -97,7 +113,6 @@ const Login: React.FC = () => {
           - {Settings.title}
         </title>
       </Helmet>
-      <Lang/>
       <div
         style={{
           flex: '1',
@@ -192,6 +207,23 @@ const Login: React.FC = () => {
                   },
                 ]}
               />
+              <div>
+              <ProFormText
+                name="captcha"
+                fieldProps={{
+                  size: 'large',
+                  prefix: <LockOutlined/>,
+                }}
+                placeholder={intl.formatMessage({ id: '请输入验证码', defaultMessage: '请输入验证码' })}
+                rules={[
+                  {
+                    required: true,
+                    message: <FormattedMessage id="请输入验证码" defaultMessage="请输入验证码！"/>,
+                  },
+                ]}
+              />
+                <img src={captchaSrc} onClick={refreshCaptcha} />
+              </div>
             </>
           )}
         </LoginForm>
@@ -201,4 +233,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;

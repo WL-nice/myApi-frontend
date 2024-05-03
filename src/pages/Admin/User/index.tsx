@@ -7,6 +7,7 @@ import {PageContainer, ProTable} from '@ant-design/pro-components';
 import '@umijs/max';
 import {Button, Space, Typography, message} from 'antd';
 import React, {useRef, useState} from 'react';
+import UpdatePasswordModal from "@/pages/Admin/User/components/UpdatePasswordModal";
 
 /**
  * 用户管理页面
@@ -18,6 +19,8 @@ const UserAdminPage: React.FC = () => {
   const [createModalVisible, setCreateModalVisible] = useState<boolean>(false);
   // 是否显示更新窗口
   const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
+  // 是否显示更新密码窗口
+  const [updatePasswordModalVisible, setUpdatePasswordModalVisible] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
   // 当前用户点击的数据
   const [currentRow, setCurrentRow] = useState<API.User>();
@@ -126,6 +129,14 @@ const UserAdminPage: React.FC = () => {
           >
             修改
           </Typography.Link>
+          <Typography.Link
+            onClick={() => {
+              setCurrentRow(record);
+              setUpdatePasswordModalVisible(true);
+            }}
+          >
+            修改密码
+          </Typography.Link>
           <Typography.Link type="danger" onClick={() => handleDelete(record)}>
             删除
           </Typography.Link>
@@ -194,6 +205,19 @@ const UserAdminPage: React.FC = () => {
         }}
         onCancel={() => {
           setUpdateModalVisible(false);
+        }}
+      />
+      <UpdatePasswordModal
+        visible={updatePasswordModalVisible}
+        columns={columns}
+        oldData={currentRow}
+        onSubmit={() => {
+          setUpdatePasswordModalVisible(false);
+          setCurrentRow(undefined);
+          actionRef.current?.reload();
+        }}
+        onCancel={() => {
+          setUpdatePasswordModalVisible(false);
         }}
       />
     </PageContainer>

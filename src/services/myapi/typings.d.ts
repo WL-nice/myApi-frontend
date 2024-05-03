@@ -76,6 +76,13 @@ declare namespace API {
     description?: string;
   };
 
+  type BaseResponseValidCodeVo = {
+    code?: number;
+    data?: ValidCodeVo;
+    message?: string;
+    description?: string;
+  };
+
   type DeleteRequest = {
     id?: number;
   };
@@ -191,13 +198,6 @@ declare namespace API {
     pages?: number;
   };
 
-  type PageRequest = {
-    current?: number;
-    pageSize?: number;
-    sortOrder?: string;
-    sortField?: string;
-  };
-
   type PageUser = {
     records?: User[];
     total?: number;
@@ -228,10 +228,6 @@ declare namespace API {
 
   type rebuildUserKeyParams = {
     id: number;
-  };
-
-  type searchUsersParams = {
-    username: string;
   };
 
   type User = {
@@ -321,6 +317,8 @@ declare namespace API {
     userAccount?: string;
     userPassword?: string;
     checkPassword?: string;
+    captcha?: string;
+    captchaKey?: string;
   };
 
   type UserUpdateByUserRequest = {
@@ -331,7 +329,12 @@ declare namespace API {
     gender?: number;
     phone?: string;
     email?: string;
-    userPassword?: string;
+  };
+
+  type UserUpdatePasswordRequest = {
+    id?: number;
+    password?: string;
+    checkPassword?: string;
   };
 
   type UserUpdateRequest = {
@@ -343,6 +346,10 @@ declare namespace API {
     userRole?: number;
     phone?: string;
     email?: string;
-    userPassword?: string;
+  };
+
+  type ValidCodeVo = {
+    codeKey?: string;
+    codeValue?: string;
   };
 }
