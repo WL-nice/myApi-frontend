@@ -39,7 +39,7 @@ const Index: React.FC = () => {
         itemLayout="horizontal"
         dataSource={list}
         renderItem={(item) => {
-          const apiLink = `/interface_info/${item.id}`;
+          const apiLink = `/interfaceInfoView/${item.id}`;
           return (
             <List.Item actions={[<a key={item.id} href={apiLink}>查看</a>]}>
               <List.Item.Meta

@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
         {
           key: 'MyApi',
           title: 'MyApi',
-          href: 'https://pro.ant.design',
+          href: 'http://127.0.0.1',
           blankTarget: true,
         },
         {
@@ -22,9 +22,9 @@ const Footer: React.FC = () => {
           blankTarget: true,
         },
         {
-          key: 'Ant Design',
-          title: 'Ant Design',
-          href: 'https://ant.design',
+          key: ' MyApi',
+          title: 'MyApi',
+          href: 'http://127.0.0.1',
           blankTarget: true,
         },
       ]}

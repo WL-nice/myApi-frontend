@@ -129,9 +129,9 @@ const Register: React.FC = () => {
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" src="/logo.svg"/>}
-          title="MyApi 开放API平台"
-          subTitle={ '开放API平台' }
+          logo={<img alt="logo" src="/oj-logo.svg"/>}
+          title="MyApi 开放API接口"
+          subTitle={ '开放API接口' }
           initialValues={{
             autoLogin: true,
           }}

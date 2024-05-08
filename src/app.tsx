@@ -53,6 +53,7 @@ export async function getInitialState(): Promise<{
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => {
   return {
+    logo:'/oj-logo.svg',
     avatarProps: {
       src: initialState?.currentUser?.avatarUrl,
       title: <AvatarName/>,
@@ -135,7 +136,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request = {
-  baseURL:isDev ? 'http://localhost:8082' : undefined,
+  baseURL:isDev ? 'http://localhost:8082' : 'http://175.24.166.167:8082/api',
   withCredentials: true,
   ...errorConfig,
 };

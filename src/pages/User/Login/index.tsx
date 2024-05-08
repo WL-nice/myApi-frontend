@@ -2,7 +2,7 @@ import { Footer } from '@/components';
 import { getCurrentUser, userLogin } from '@/services/myapi/userController';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
-import { FormattedMessage, Helmet, Link, SelectLang, history, useIntl, useModel } from '@umijs/max';
+import { FormattedMessage, Helmet, Link,  history, useIntl, useModel } from '@umijs/max';
 import { Tabs, message } from 'antd';
 import { createStyles } from 'antd-style';
 import React, { useState } from 'react';
@@ -115,9 +115,9 @@ const Login: React.FC = () => {
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" src="/logo.svg" />}
-          title="MyApi 开放API平台"
-          subTitle={ '开放API平台' }
+          logo={<img alt="logo" src="/oj-logo.svg" />}
+          title="MyApi 开放API接口"
+          subTitle={ '开放API接口' }
           initialValues={{
             autoLogin: true,
           }}

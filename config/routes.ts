@@ -34,10 +34,10 @@ export default [
     component: './Welcome',
   },
   {
-    path: '/interface_info/:id',
+    path: '/interfaceInfoView/:id',
     name: '查看接口',
     icon: 'smile',
-    component: './InterfaceInfo',
+    component: './User/InterfaceInfoView',
     hideInMenu: true,
   },
   {
