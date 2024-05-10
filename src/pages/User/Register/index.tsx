@@ -8,6 +8,7 @@ import { createStyles } from 'antd-style';
 import React, { useEffect, useState } from 'react';
 
 import Settings from '../../../../config/defaultSettings';
+import {Link} from "@@/exports";
 
 const useStyles = createStyles(({ token }) => {
   return {
@@ -207,7 +208,7 @@ const Register: React.FC = () => {
                   },
                 ]}
               />
-              <div>
+              <div style={{ display: 'flex' }}>
               <ProFormText
                 name="captcha"
                 fieldProps={{
@@ -222,10 +223,19 @@ const Register: React.FC = () => {
                   },
                 ]}
               />
-                <img src={captchaSrc} onClick={refreshCaptcha} />
+                <img src={captchaSrc} onClick={refreshCaptcha} style={{ marginLeft: 18 }}
+                     width="100px"
+                     height="39px" />
               </div>
             </>
           )}
+          <div
+            style={{
+              marginBottom: 24,
+            }}
+          >
+            <Link to="/user/login">已有账号？ 快去登录吧</Link>
+          </div>
         </LoginForm>
       </div>
       <Footer/>
