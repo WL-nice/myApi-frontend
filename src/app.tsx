@@ -136,7 +136,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request = {
-  baseURL:isDev ? 'http://localhost:8082' : 'http://175.24.166.167:8082/api',
+  baseURL:isDev ? 'http://localhost:8081' : 'http://myapi-back.wlsite.icu/api',
   withCredentials: true,
   ...errorConfig,
 };

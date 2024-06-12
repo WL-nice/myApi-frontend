@@ -38,7 +38,7 @@ export async function getInterfaceInfoVoById(
   params: API.getInterfaceInfoVOByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseInterfaceInfo>('/InterfaceInfo/get/vo', {
+  return request<API.BaseResponseInterfaceInfoVO>('/InterfaceInfo/get/vo', {
     method: 'GET',
     params: {
       ...params,
@@ -97,6 +97,14 @@ export async function onlineInterfaceInfo(body: API.IdRequest, options?: { [key:
       'Content-Type': 'application/json',
     },
     data: body,
+    ...(options || {}),
+  });
+}
+
+/** 此处后端没有提供注释 GET /InterfaceInfo/sdk */
+export async function getSdk(options?: { [key: string]: any }) {
+  return request<any>('/InterfaceInfo/sdk', {
+    method: 'GET',
     ...(options || {}),
   });
 }

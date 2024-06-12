@@ -43,7 +43,7 @@ const BaseView: React.FC = () => {
           <Descriptions title={currentUser.username} column={1}>
             <Descriptions.Item label="账号">{currentUser.userAccount}</Descriptions.Item>
             <Descriptions.Item label="性别">{currentUser.gender ? '女' : '男'}</Descriptions.Item>
-            <Descriptions.Item label="角色">{currentUser.userRole ? '普通用户' : '管理员'}</Descriptions.Item>
+            <Descriptions.Item label="角色">{currentUser.userRole ? '管理员' : '普通用户'}</Descriptions.Item>
             <Descriptions.Item label="注册时间">{dayjs(currentUser.createTime).format('YYYY-MM-DD HH:mm')}</Descriptions.Item>
           </Descriptions>
         ) : (

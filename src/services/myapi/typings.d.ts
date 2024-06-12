@@ -13,9 +13,16 @@ declare namespace API {
     description?: string;
   };
 
-  type BaseResponseInterfaceInfo = {
+  type BaseResponseInterfaceInfoVO = {
     code?: number;
-    data?: InterfaceInfo;
+    data?: InterfaceInfoVO;
+    message?: string;
+    description?: string;
+  };
+
+  type BaseResponseInvokeCount = {
+    code?: number;
+    data?: InvokeCount;
     message?: string;
     description?: string;
   };
@@ -76,9 +83,9 @@ declare namespace API {
     description?: string;
   };
 
-  type BaseResponseValidCodeVo = {
+  type BaseResponseValidCodeVO = {
     code?: number;
-    data?: ValidCodeVo;
+    data?: ValidCodeVO;
     message?: string;
     description?: string;
   };
@@ -93,6 +100,10 @@ declare namespace API {
 
   type getInterfaceInfoVOByIdParams = {
     id: number;
+  };
+
+  type getInvokeCountParams = {
+    interfaceInfoId: number;
   };
 
   type getUserKeyParams = {
@@ -114,6 +125,7 @@ declare namespace API {
     status?: number;
     method?: string;
     userId?: number;
+    parameterExample?: string;
     createTime?: string;
     updateTime?: string;
     isDelete?: number;
@@ -126,6 +138,7 @@ declare namespace API {
     requestParams?: string;
     requestHeader?: string;
     responseHeader?: string;
+    parameterExample?: string;
     method?: string;
   };
 
@@ -158,6 +171,7 @@ declare namespace API {
     requestParams?: string;
     requestHeader?: string;
     responseHeader?: string;
+    parameterExample?: string;
     status?: number;
     method?: string;
   };
@@ -173,10 +187,17 @@ declare namespace API {
     status?: number;
     method?: string;
     userId?: number;
+    parameterExample?: string;
     createTime?: string;
     updateTime?: string;
     isDelete?: number;
     totalNum?: number;
+    leftNum?: number;
+  };
+
+  type InvokeCount = {
+    totalNum?: number;
+    leftNum?: number;
   };
 
   type OrderItem = {
@@ -348,7 +369,7 @@ declare namespace API {
     email?: string;
   };
 
-  type ValidCodeVo = {
+  type ValidCodeVO = {
     codeKey?: string;
     codeValue?: string;
   };

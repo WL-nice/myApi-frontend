@@ -147,6 +147,18 @@ const InterfaceInfoAdminPage: React.FC = () => {
         dataIndex: 'requestParams',
         valueType: 'jsonCode',
         hideInSearch: true,
+        formItemProps: {
+          rules: [{
+            required: true,
+            message: '请求参数不能为空',
+          }],
+        }
+      },
+      {
+        title: '请求参数样例',
+        dataIndex: 'parameterExample',
+        valueType: 'jsonCode',
+        hideInSearch: true,
       },
       {
         title: '请求头',
@@ -188,14 +200,6 @@ const InterfaceInfoAdminPage: React.FC = () => {
         hideInSearch: true,
         hideInForm: true,
       },
-      // {
-      //   title: '更新时间',
-      //   sorter: true,
-      //   dataIndex: 'updateTime',
-      //   valueType: 'dateTime',
-      //   hideInSearch: true,
-      //   hideInForm: true,
-      // },
       {
         title: '操作',
         dataIndex: 'option',

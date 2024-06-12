@@ -54,7 +54,7 @@ export async function getUserKey(
 
 /** 此处后端没有提供注释 POST /user/getValidCode */
 export async function getValidCode(options?: { [key: string]: any }) {
-  return request<API.BaseResponseValidCodeVo>('/user/getValidCode', {
+  return request<API.BaseResponseValidCodeVO>('/user/getValidCode', {
     method: 'POST',
     ...(options || {}),
   });

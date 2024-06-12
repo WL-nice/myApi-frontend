@@ -32,6 +32,21 @@ export async function deleteUserInterfaceInfo(
   });
 }
 
+/** 此处后端没有提供注释 GET /UserInterfaceInfo/get/invoke_count */
+export async function getInvokeCount(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getInvokeCountParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseInvokeCount>('/UserInterfaceInfo/get/invoke_count', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
 /** 此处后端没有提供注释 POST /UserInterfaceInfo/list/page */
 export async function listUserInterfaceInfoByPage(
   body: API.UserInterfaceInfoQueryRequest,

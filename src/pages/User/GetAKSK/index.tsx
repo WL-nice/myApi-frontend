@@ -1,9 +1,11 @@
-import {PageContainer} from '@ant-design/pro-components';
-import React, {useEffect, useState} from 'react';
-import {Button, Card, Descriptions, message} from 'antd';
+import { PageContainer } from '@ant-design/pro-components';
+import { Button, Card, Descriptions, Space, message } from 'antd';
+import React, { useEffect, useState } from 'react';
 
-import {useModel} from '@@/exports';
-import {getUserKey, rebuildUserKey} from "@/services/myapi/userController";
+import { request } from '@/app';
+import { getUserKey, rebuildUserKey } from '@/services/myapi/userController';
+import { useModel } from '@@/exports';
+import { Typography } from 'antd';
 
 /**
  * 主页
@@ -12,9 +14,8 @@ import {getUserKey, rebuildUserKey} from "@/services/myapi/userController";
 const GetAKSK: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<API.UserAkSk>();
-  const {initialState} = useModel('@@initialState');
+  const { initialState } = useModel('@@initialState');
   const [invokeLoading, setInvokeLoading] = useState(false);
-
 
   const loadData = async () => {
     if (!initialState) {
@@ -54,14 +55,34 @@ const GetAKSK: React.FC = () => {
     }
     setInvokeLoading(false);
   };
+  const GetSdk = () => {
+    window.location.href = request.baseURL + '/InterfaceInfo/sdk';
+  };
+
+  const { Paragraph, Text } = Typography;
 
   return (
     <PageContainer>
       <Card>
         {data ? (
-          <Descriptions title={"开发者密钥"} column={1} extra={<Button onClick={onFinish}>重新生成</Button>}>
-            <Descriptions.Item label="accessKey">{data.accessKey}</Descriptions.Item>
-            <Descriptions.Item label="secretKey">{data.secretKey}</Descriptions.Item>
+          <Descriptions
+            title={'开发者密钥'}
+            column={1}
+            extra={
+              <>
+                <Space>
+                  <Button onClick={onFinish}>重新生成</Button>
+                  <Button onClick={GetSdk}>下载SDK</Button>
+                </Space>
+              </>
+            }
+          >
+            <Descriptions.Item label="accessKey">
+              <Paragraph copyable={{ text: data.accessKey }}>{data.accessKey}.</Paragraph>
+            </Descriptions.Item>
+            <Descriptions.Item label="secretKey">
+              <Paragraph copyable={{ text: data.secretKey }}>{data.secretKey}.</Paragraph>
+            </Descriptions.Item>
           </Descriptions>
         ) : (
           <>用户不存在</>
